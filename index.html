@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayode Bot Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/layout.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-robot"></i>
+                    <span>Kayode</span>
+                </div>
+                <button class="sidebar-toggle-mobile" id="sidebarToggleMobile">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-page="overview">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Overview</span>
+                </a>
+                <a href="#" class="nav-item" data-page="setups">
+                    <i class="fas fa-cog"></i>
+                    <span>Setups</span>
+                </a>
+                <a href="#" class="nav-item" data-page="orders">
+                    <i class="fas fa-list"></i>
+                    <span>Orders</span>
+                </a>
+                <a href="#" class="nav-item" data-page="positions">
+                    <i class="fas fa-layer-group"></i>
+                    <span>Positions</span>
+                </a>
+                <a href="#" class="nav-item" data-page="history">
+                    <i class="fas fa-history"></i>
+                    <span>Trade History</span>
+                </a>
+                <a href="#" class="nav-item" data-page="performance">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Performance</span>
+                </a>
+                <a href="#" class="nav-item" data-page="risk">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Risk</span>
+                </a>
+                <a href="#" class="nav-item" data-page="account">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Account</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="demo-badge">DEMO MODE</div>
+            </div>
+        </aside>
+
+        <!-- Mobile Navigation Toggle -->
+        <button class="nav-toggle" id="navToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1 class="page-title" id="pageTitle">Overview</h1>
+                </div>
+                <div class="header-right">
+                    <div class="status-indicator">
+                        <span class="status-dot status-connected"></span>
+                        <span class="status-text">Connected</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content Container -->
+            <div class="content-container" id="contentContainer">
+                <!-- Pages will be loaded here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Page Templates -->
+    <template id="overview-page">
+        <div class="page-content overview-page">
+            <!-- Bot Status Section -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>Bot Status</h2>
+                </div>
+                <div class="status-grid">
+                    <div class="status-card">
+                        <div class="status-card-label">Bot Status</div>
+                        <div class="status-card-value">
+                            <span class="badge badge-success">
+                                <i class="fas fa-check-circle"></i> Active
+                            </span>
+                        </div>
+                    </div>
+                    <div class="status-card">
+                        <div class="status-card-label">Environment</div>
+                        <div class="status-card-value">Demo Trading</div>
+                    </div>
+                    <div class="status-card">
+                        <div class="status-card-label">Account Status</div>
+                        <div class="status-card-value">
+                            <span class="badge badge-success">
+                                <i class="fas fa-check-circle"></i> Connected
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Metrics -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>Key Metrics</h2>
+                </div>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-label">Account Equity</div>
+                        <div class="metric-value">$50,000.00</div>
+                        <div class="metric-change positive">
+                            <i class="fas fa-arrow-up"></i> +$2,500.00
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Today's P&L</div>
+                        <div class="metric-value">+$1,250.50</div>
+                        <div class="metric-change positive">
+                            +2.5%
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Active Setups</div>
+                        <div class="metric-value">4</div>
+                        <div class="metric-change neutral">
+                            Armed & Waiting
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Open Positions</div>
+                        <div class="metric-value">2</div>
+                        <div class="metric-change positive">
+                            Both Profitable
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Current Setup Stage Visualization -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>Setup Progression</h2>
+                </div>
+                <div class="setup-progression">
+                    <div class="progression-item completed">
+                        <div class="progression-label">1W</div>
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="progression-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    <div class="progression-item completed">
+                        <div class="progression-label">1D</div>
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="progression-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    <div class="progression-item completed">
+                        <div class="progression-label">4H</div>
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="progression-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    <div class="progression-item completed">
+                        <div class="progression-label">1H</div>
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="progression-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    <div class="progression-item completed">
+                        <div class="progression-label">POI</div>
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="progression-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    <div class="progression-item completed">
+                        <div class="progression-label">30M</div>
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="progression-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    <div class="progression-item active">
+                        <div class="progression-label">15M</div>
+                        <i class="fas fa-spinner"></i>
+                    </div>
+                    <div class="progression-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    <div class="progression-item">
+                        <div class="progression-label">Armed</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Live Setups Table -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>Live Setups</h2>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Symbol</th>
+                                <th>Direction</th>
+                                <th>Stage</th>
+                                <th>Activation Price</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="setupsTableBody">
+                            <tr>
+                                <td><strong>BTCUSDT</strong></td>
+                                <td><span class="badge badge-buy">BUY</span></td>
+                                <td>15M Confirmation</td>
+                                <td>$42,250.00</td>
+                                <td><span class="badge badge-warning">Waiting</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>ETHUSDT</strong></td>
+                                <td><span class="badge badge-buy">BUY</span></td>
+                                <td>30M Confirmation</td>
+                                <td>$2,150.00</td>
+                                <td><span class="badge badge-info">Armed</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>SOLUSDT</strong></td>
+                                <td><span class="badge badge-sell">SELL</span></td>
+                                <td>1H Refinement</td>
+                                <td>$195.50</td>
+                                <td><span class="badge badge-secondary">Monitoring</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>BNBUSDT</strong></td>
+                                <td><span class="badge badge-buy">BUY</span></td>
+                                <td>4H Refinement</td>
+                                <td>$610.00</td>
+                                <td><span class="badge badge-secondary">Monitoring</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </template>
+
+    <template id="setups-page">
+        <div class="page-content setups-page">
+            <section class="section">
+                <div class="section-header">
+                    <h2>Active Setups</h2>
+                    <div class="filter-group">
+                        <input type="text" class="search-input" placeholder="Search symbol..." id="setupsSearch">
+                    </div>
+                </div>
+                <div class="setups-list" id="setupsList">
+                    <div class="setup-card">
+                        <div class="setup-card-header">
+                            <h3>BTCUSDT - BUY Setup</h3>
+                            <span class="badge badge-info">Armed</span>
+                        </div>
+                        <div class="setup-card-body">
+                            <div class="setup-grid">
+                                <div class="setup-item">
+                                    <span class="setup-label">HTF Bias</span>
+                                    <span class="setup-value">Bullish</span>
+                                </div>
+                                <div class="setup-item">
+                                    <span class="setup-label">POI</span>
+                                    <span class="setup-value">Confirmed</span>
+                                </div>
+                                <div class="setup-item">
+                                    <span class="setup-label">Reaction</span>
+                                    <span class="setup-value">Impulsive</span>
+                                </div>
+                                <div class="setup-item">
+                                    <span class="setup-label">O&C Refinement</span>
+                                    <span class="setup-value">Complete</span>
+                                </div>
+                                <div class="setup-item">
+                                    <span class="setup-label">30M Confirmation</span>
+                                    <span class="setup-value">Complete</span>
+                                </div>
+                                <div class="setup-item">
+                                    <span class="setup-label">15M Confirmation</span>
+                                    <span class="setup-value">In Progress</span>
+                                </div>
+                                <div class="setup-item">
+                                    <span class="setup-label">Activation Price</span>
+                                    <span class="setup-value">$42,250.00</span>
+                                </div>
+                                <div class="setup-item">
+                                    <span class="setup-label">Current Price</span>
+                                    <span class="setup-value">$42,100.00</span>
+                                </div>
+                                <div class="setup-item">
+                                    <span class="setup-label">Distance</span>
+                                    <span class="setup-value positive">+0.36% to touch</span>
+                                </div>
+                                <div class="setup-item">
+                                    <span class="setup-label">Stop Loss</span>
+                                    <span class="setup-value">$40,800.00</span>
+                                </div>
+                                <div class="setup-item">
+                                    <span class="setup-label">Take Profit</span>
+                                    <span class="setup-value">$44,600.00</span>
+                                </div>
+                                <div class="setup-item">
+                                    <span class="setup-label">R Multiple</span>
+                                    <span class="setup-value">2.8</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="setup-card">
+                        <div class="setup-card-header">
+                            <h3>ETHUSDT - BUY Setup</h3>
+                            <span class="badge badge-warning">Waiting</span>
+                        </div>
+                        <div class="setup-card-body">
+                            <div class="setup-grid">
+                                <div class="setup-item">
+                                    <span class="setup-label">HTF Bias</span>
+                                    <span class="setup-value">Bullish</span>
+                                </div>
+                                <div class="setup-item">
+                                    <span class="setup-label">POI</span>
+                                    <span class="setup-value">Identified</span>
+                                </div>
+                                <div class="setup-item">
+                                    <span class="setup-label">Reaction</span>
+                                    <span class="setup-value">Monitoring</span>
+                                </div>
+                                <div class="setup-item">
+                                    <span class="setup-label">O&C Refinement</span>
+                                    <span class="setup-value">Complete</span>
+                                </div>
+                                <div class="setup-item">
+                                    <span class="setup-label">30M Confirmation</span>
+                                    <span class="setup-value">In Progress</span>
+                                </div>
+                                <div class="setup-item">
+                                    <span class="setup-label">15M Confirmation</span>
+                                    <span class="setup-value">Pending</span>
+                                </div>
+                                <div class="setup-item">
+                                    <span class="setup-label">Activation Price</span>
+                                    <span class="setup-value">$2,150.00</span>
+                                </div>
+                                <div class="setup-item">
+                                    <span class="setup-label">Current Price</span>
+                                    <span class="setup-value">$2,125.50</span>
+                                </div>
+                                <div class="setup-item">
+                                    <span class="setup-label">Distance</span>
+                                    <span class="setup-value positive">+1.14% to touch</span>
+                                </div>
+                                <div class="setup-item">
+                                    <span class="setup-label">Stop Loss</span>
+                                    <span class="setup-value">$2,050.00</span>
+                                </div>
+                                <div class="setup-item">
+                                    <span class="setup-label">Take Profit</span>
+                                    <span class="setup-value">$2,290.00</span>
+                                </div>
+                                <div class="setup-item">
+                                    <span class="setup-label">R Multiple</span>
+                                    <span class="setup-value">3.2</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </template>
+
+    <template id="orders-page">
+        <div class="page-content orders-page">
+            <section class="section">
+                <div class="section-header">
+                    <h2>Orders</h2>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Symbol</th>
+                                <th>Side</th>
+                                <th>Type</th>
+                                <th>Entry</th>
+                                <th>Quantity</th>
+                                <th>Stop Loss</th>
+                                <th>Take Profit</th>
+                                <th>Status</th>
+                                <th>Created</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>BTCUSDT</strong></td>
+                                <td><span class="badge badge-buy">BUY</span></td>
+                                <td>Limit</td>
+                                <td>$42,250.00</td>
+                                <td>0.5 BTC</td>
+                                <td>$40,800.00</td>
+                                <td>$44,600.00</td>
+                                <td><span class="badge badge-info">Pending</span></td>
+                                <td>Today 10:23 AM</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ETHUSDT</strong></td>
+                                <td><span class="badge badge-buy">BUY</span></td>
+                                <td>Limit</td>
+                                <td>$2,150.00</td>
+                                <td>5.0 ETH</td>
+                                <td>$2,050.00</td>
+                                <td>$2,290.00</td>
+                                <td><span class="badge badge-success">Filled</span></td>
+                                <td>Today 08:45 AM</td>
+                            </tr>
+                            <tr>
+                                <td><strong>SOLUSDT</strong></td>
+                                <td><span class="badge badge-sell">SELL</span></td>
+                                <td>Limit</td>
+                                <td>$195.50</td>
+                                <td>50.0 SOL</td>
+                                <td>$210.00</td>
+                                <td>$175.00</td>
+                                <td><span class="badge badge-secondary">Cancelled</span></td>
+                                <td>Yesterday 02:15 PM</td>
+                            </tr>
+                            <tr>
+                                <td><strong>BNBUSDT</strong></td>
+                                <td><span class="badge badge-buy">BUY</span></td>
+                                <td>Limit</td>
+                                <td>$610.00</td>
+                                <td>15.0 BNB</td>
+                                <td>$580.00</td>
+                                <td>$650.00</td>
+                                <td><span class="badge badge-success">Filled</span></td>
+                                <td>Yesterday 11:30 AM</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </template>
+
+    <template id="positions-page">
+        <div class="page-content positions-page">
+            <section class="section">
+                <div class="section-header">
+                    <h2>Open Positions</h2>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Symbol</th>
+                                <th>Direction</th>
+                                <th>Entry</th>
+                                <th>Current</th>
+                                <th>Unrealized P&L</th>
+                                <th>SL</th>
+                                <th>TP</th>
+                                <th>R Multiple</th>
+                                <th>Size</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>BTCUSDT</strong></td>
+                                <td><span class="badge badge-buy">LONG</span></td>
+                                <td>$42,100.00</td>
+                                <td>$42,350.00</td>
+                                <td>
+                                    <span class="metric-change positive">
+                                        +$1,250.00 (+2.95%)
+                                    </span>
+                                </td>
+                                <td>$40,800.00</td>
+                                <td>$44,600.00</td>
+                                <td>1.8</td>
+                                <td>0.5 BTC</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ETHUSDT</strong></td>
+                                <td><span class="badge badge-buy">LONG</span></td>
+                                <td>$2,150.00</td>
+                                <td>$2,185.50</td>
+                                <td>
+                                    <span class="metric-change positive">
+                                        +$177.50 (+1.65%)
+                                    </span>
+                                </td>
+                                <td>$2,050.00</td>
+                                <td>$2,290.00</td>
+                                <td>1.5</td>
+                                <td>5.0 ETH</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </template>
+
+    <template id="history-page">
+        <div class="page-content history-page">
+            <section class="section">
+                <div class="section-header">
+                    <h2>Trade History</h2>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Symbol</th>
+                                <th>Direction</th>
+                                <th>Entry</th>
+                                <th>Exit</th>
+                                <th>SL</th>
+                                <th>TP</th>
+                                <th>Result</th>
+                                <th>R</th>
+                                <th>P&L</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Sep 11, 2024</td>
+                                <td><strong>BTCUSDT</strong></td>
+                                <td><span class="badge badge-buy">BUY</span></td>
+                                <td>$41,800.00</td>
+                                <td>$43,200.00</td>
+                                <td>$40,500.00</td>
+                                <td>$44,000.00</td>
+                                <td><span class="badge badge-success">Win</span></td>
+                                <td>+1.8</td>
+                                <td>+$700.00</td>
+                            </tr>
+                            <tr>
+                                <td>Sep 10, 2024</td>
+                                <td><strong>ETHUSDT</strong></td>
+                                <td><span class="badge badge-buy">BUY</span></td>
+                                <td>$2,100.00</td>
+                                <td>$2,050.00</td>
+                                <td>$2,000.00</td>
+                                <td>$2,250.00</td>
+                                <td><span class="badge badge-danger">Loss</span></td>
+                                <td>-0.5</td>
+                                <td>-$250.00</td>
+                            </tr>
+                            <tr>
+                                <td>Sep 09, 2024</td>
+                                <td><strong>SOLUSDT</strong></td>
+                                <td><span class="badge badge-sell">SELL</span></td>
+                                <td>$190.00</td>
+                                <td>$185.50</td>
+                                <td>$195.00</td>
+                                <td>$170.00</td>
+                                <td><span class="badge badge-success">Win</span></td>
+                                <td>+2.1</td>
+                                <td>+$225.00</td>
+                            </tr>
+                            <tr>
+                                <td>Sep 08, 2024</td>
+                                <td><strong>BNBUSDT</strong></td>
+                                <td><span class="badge badge-buy">BUY</span></td>
+                                <td>$600.00</td>
+                                <td>$615.00</td>
+                                <td>$570.00</td>
+                                <td>$650.00</td>
+                                <td><span class="badge badge-success">Win</span></td>
+                                <td>+1.5</td>
+                                <td>+$225.00</td>
+                            </tr>
+                            <tr>
+                                <td>Sep 07, 2024</td>
+                                <td><strong>BTCUSDT</strong></td>
+                                <td><span class="badge badge-sell">SELL</span></td>
+                                <td>$42,500.00</td>
+                                <td>$42,100.00</td>
+                                <td>$43,500.00</td>
+                                <td>$40,000.00</td>
+                                <td><span class="badge badge-success">Win</span></td>
+                                <td>+0.9</td>
+                                <td>+$400.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </template>
+
+    <template id="performance-page">
+        <div class="page-content performance-page">
+            <section class="section">
+                <div class="section-header">
+                    <h2>Performance Metrics</h2>
+                </div>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-label">Total Trades</div>
+                        <div class="metric-value">32</div>
+                        <div class="metric-change neutral">All Time</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Win Rate</div>
+                        <div class="metric-value">68.75%</div>
+                        <div class="metric-change positive">+4.2% vs last month</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Average R</div>
+                        <div class="metric-value">+1.45</div>
+                        <div class="metric-change positive">Profitable</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Net R</div>
+                        <div class="metric-value">+23.4</div>
+                        <div class="metric-change positive">+$3,540 total</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Profit Factor</div>
+                        <div class="metric-value">2.18</div>
+                        <div class="metric-change positive">Healthy ratio</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Max Drawdown</div>
+                        <div class="metric-value">-12.5%</div>
+                        <div class="metric-change neutral">Within limits</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="section-header">
+                    <h2>Equity Curve (Mock Data)</h2>
+                </div>
+                <div class="chart-container">
+                    <canvas id="equityChart" width="400" height="200"></canvas>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="section-header">
+                    <h2>Monthly Performance</h2>
+                </div>
+                <div class="chart-container">
+                    <canvas id="monthlyChart" width="400" height="200"></canvas>
+                </div>
+            </section>
+        </div>
+    </template>
+
+    <template id="risk-page">
+        <div class="page-content risk-page">
+            <section class="section">
+                <div class="section-header">
+                    <h2>Risk Management</h2>
+                </div>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-label">Risk per Trade</div>
+                        <div class="metric-value">$500.00</div>
+                        <div class="metric-change positive">2% of account</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Max Concurrent</div>
+                        <div class="metric-value">3 / 5</div>
+                        <div class="metric-change neutral">Positions allowed</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Daily Loss Limit</div>
+                        <div class="metric-value">$2,000.00</div>
+                        <div class="metric-change positive">Not exceeded</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Current Exposure</div>
+                        <div class="metric-value">$21,427.50</div>
+                        <div class="metric-change neutral">42.85% of equity</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="section-header">
+                    <h2>Risk Parameters</h2>
+                </div>
+                <div class="risk-parameters">
+                    <div class="parameter-item">
+                        <div class="parameter-label">Risk/Reward Ratio</div>
+                        <div class="parameter-value">Minimum 1:1.5</div>
+                        <div class="parameter-status success">Enforced</div>
+                    </div>
+                    <div class="parameter-item">
+                        <div class="parameter-label">Stop Loss</div>
+                        <div class="parameter-value">Always set</div>
+                        <div class="parameter-status success">Enforced</div>
+                    </div>
+                    <div class="parameter-item">
+                        <div class="parameter-label">Position Sizing</div>
+                        <div class="parameter-value">Auto-calculated</div>
+                        <div class="parameter-status success">Active</div>
+                    </div>
+                    <div class="parameter-item">
+                        <div class="parameter-label">Drawdown Protection</div>
+                        <div class="parameter-value">15% max daily</div>
+                        <div class="parameter-status success">Active</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </template>
+
+    <template id="account-page">
+        <div class="page-content account-page">
+            <section class="section">
+                <div class="section-header">
+                    <h2>Account Information</h2>
+                </div>
+                <div class="account-info">
+                    <div class="account-card">
+                        <div class="account-field">
+                            <span class="account-label">Exchange</span>
+                            <span class="account-value">Bybit</span>
+                        </div>
+                        <div class="account-field">
+                            <span class="account-label">Connection Status</span>
+                            <span class="account-value">
+                                <span class="badge badge-success">
+                                    <i class="fas fa-check-circle"></i> Connected
+                                </span>
+                            </span>
+                        </div>
+                        <div class="account-field">
+                            <span class="account-label">Environment</span>
+                            <span class="account-value">Demo Trading</span>
+                        </div>
+                        <div class="account-field">
+                            <span class="account-label">Account Equity</span>
+                            <span class="account-value">$50,000.00</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="section-header">
+                    <h2>Exchange Connection</h2>
+                </div>
+                <div class="connection-section">
+                    <p class="section-description">
+                        Connect your Bybit account to start live trading. Your API keys are encrypted and stored securely.
+                    </p>
+                    <button class="btn btn-primary" id="connectBtn">
+                        <i class="fas fa-link"></i> Connect Exchange
+                    </button>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="section-header">
+                    <h2>Settings</h2>
+                </div>
+                <div class="settings-list">
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <div class="setting-title">Demo Trading Mode</div>
+                            <div class="setting-description">Trade on Bybit Demo account without real money</div>
+                        </div>
+                        <div class="setting-control">
+                            <label class="toggle">
+                                <input type="checkbox" checked>
+                                <span class="toggle-switch"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <div class="setting-title">Auto-Trade</div>
+                            <div class="setting-description">Automatically place orders when setups are activated</div>
+                        </div>
+                        <div class="setting-control">
+                            <label class="toggle">
+                                <input type="checkbox" checked>
+                                <span class="toggle-switch"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <div class="setting-title">Email Notifications</div>
+                            <div class="setting-description">Receive alerts for setup updates and filled orders</div>
+                        </div>
+                        <div class="setting-control">
+                            <label class="toggle">
+                                <input type="checkbox">
+                                <span class="toggle-switch"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </template>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
